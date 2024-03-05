@@ -1,4 +1,5 @@
 # Rails.application.routes.draw do
+
 #   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 #   get "/articles", to: "articles#index"
 #   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,8 +11,10 @@
 # end
 
 Rails.application.routes.draw do
+  devise_for :users
   root "articles#index"
-
+  # delete 'logout', to: 'sessions#destroy'
+  # get "devise/sessions#destroy"
   resources :articles do
     resources :comments
   end
