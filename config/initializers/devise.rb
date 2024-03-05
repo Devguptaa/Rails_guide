@@ -9,6 +9,28 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+
+  # Other Devise configuration options...
+
+  # Enable lockable functionality using the lock_strategy option
+  config.lock_strategy = :failed_attempts
+
+  # Define maximum number of attempts before locking the account
+  config.maximum_attempts = 5
+
+  # Define unlock strategy, for example, :email or :both
+  config.unlock_strategy = :email
+
+  # Define unlock keys, for example, :email or :both
+  config.unlock_keys = [:email]
+
+  # Define unlock inactivity period, 0 for no time limit
+  config.unlock_in = 1.hour
+
+  # Define if the email should be sent when the user is locked out
+  # config.send_unlock_instructions = true
+
+
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
