@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_05_123010) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_041800) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -38,13 +38,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_05_123010) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "failed_attempts"
-    t.datetime "locked_at"
+    t.integer "failed_attempts", default: 0
     t.string "unlock_token"
+    t.datetime "locked_at"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["failed_attempts"], name: "index_users_on_failed_attempts"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token"
   end
 
   add_foreign_key "comments", "articles"
