@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :valid , only: [:edit,:destroy]
+  before_action :valid , only: [:destroy]
 
   def create
     @article = Article.find(params[:article_id])
@@ -18,16 +18,16 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit(:commenter, :body, :status)
+      params.require(:comment).permit(:commenter, :body,:user_id, :status)
     end
 
     def valid
       @comment=Comment.find(params[:id])
-      art=Article.where(id:@comment.article_id).user_id
-      if art==current_user
+
+      if @comment.user_id==current_user.id
 
       else
-        redirect_to articles_path, alert: "Not Authorized to Edit this "
+        redirect_to articles_path, alert: "Not Authorized to Destroy this Comment"
       end
     end
 end

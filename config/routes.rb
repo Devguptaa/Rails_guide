@@ -9,11 +9,14 @@
 #   # Defines the root path route ("/")
 #   # root "posts#index"
 # end
+# root "articles#index"
 
 Rails.application.routes.draw do
   devise_for :users
+  # devise_for :users, path: 'articles_path', path_names: { sign_in: 'login' }
+
   root "articles#index"
-  # delete 'logout', to: 'sessions#destroy'
+  delete 'logout', to: 'sessions#destroy'
   # get "devise/sessions#destroy"
   resources :articles do
     resources :comments

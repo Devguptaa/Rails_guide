@@ -21,9 +21,15 @@ gem "importmap-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+gem 'cancancan'
+
+gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+
+gem 'sassc-rails'
+gem 'jquery-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -67,3 +73,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "shrine", "~> 3.5"
+gem 'sequel'
+
+gem 'image_processing', '~> 1.12', '>= 1.12.2'

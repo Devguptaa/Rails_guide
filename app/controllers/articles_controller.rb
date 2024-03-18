@@ -1,15 +1,19 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:destroy]
+  # before_action :validdd, only: [:show]
+  load_and_authorize_resource
 
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :vali , only: [:edit,:destroy]
+  # before_action :authenticate_user!
+  # before_action :vali , only: [:edit,:destroy]
 
   def index
-    @articles = Article.all
+    # @articles = Article.all
   end
 
   def show
     @article = Article.find(params[:id])
+    # authorize! :read,@article
   end
 
   def new
@@ -39,15 +43,15 @@ class ArticlesController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
   def destroy
-    debugger
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to root_path, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: 'Article deleted successfully' }
+      format.json { render json: { status: 'success', message: 'Article deleted successfully' } }
+    end
   end
-
 
   private
     def article_params
@@ -61,8 +65,6 @@ class ArticlesController < ApplicationController
       # User is authorized to edit the article
     else
       redirect_to articles_path, alert: "Not Authorized to Edit this "
-end
-
     end
-
+  end
 end
