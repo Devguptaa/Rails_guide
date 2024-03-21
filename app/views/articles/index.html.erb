@@ -1,0 +1,69 @@
+<div class="container w-5 h-10">
+  <% if current_user.present? %>
+  <% if current_user.image_data.attached? %>
+    <%= image_tag rails_blob_path(current_user.image_data), class: "rounded-circle",style:"width: 200px; height: 200px;" %>
+  <% else %>
+     Provide a fallback image or message 
+  <% end %>
+<% end %>
+
+
+<h1>Articles</h1>
+
+<!--Our blog has <%= Article.public_count %> articles and counting!-->
+
+
+
+
+</div>
+<table class="table table-hover table-info table-bordered border-dark">
+  <thead class="table-dark">
+    <tr>
+      <th>Title</th>
+      <th>Creator</th>
+      <th>Created AT</th>
+      <th>Profile</th>
+      <th colspan="3"></th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <% unless article.archived? %>
+        <tr>
+          <td><%= article.title %></td>
+          <td><%= article.user.email %></td>
+          <td><%= article.created_at %></td>
+          <td><%= current_user.role %></td>
+          <td><%= link_to 'Show', article, class: "btn btn-primary" %></td>
+          <td><%= link_to 'Edit', edit_article_path(article), class: "btn btn-dark" %></td>
+          <td><%= link_to 'Delete', article_path(article), method: :delete, class: 'btn btn-danger delete-article', data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<script>$(document).ready(function() {
+  $('.delete-article').on('click', function(e) {
+    e.preventDefault();
+    var url = $(this).attr('href');
+    var articleRow = $(this).closest('tr');
+
+    $.ajax({
+      url: url,
+      type: 'DELETE',
+      dataType: 'json',
+      success: function(response) {
+        console.log(response);
+        articleRow.remove(); // Remove the deleted article from the DOM
+      },
+      error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+      }
+    });
+  });
+});
+</script>

@@ -1,0 +1,26 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <% if !parent.nil?%>
+    <%= form.hidden_field :parent_id, value: parent.id %>
+  <%end%>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <div class="field form-group">
+    <%if user_signed_in?%>
+      <%= form.number_field :user_id, id: :comment_user_id, value: current_user.id, type: :hidden, class: "form-control" %>
+    <%end%>
+  </div>
+  <p>
+    <%= form.submit %>
+  </p>
+  <p>
+  <%= form.label :status %><br>
+  <%= form.select :status, Visible::VALID_STATUSES, selected: 'public' %>
+</p>
+
+<% end %>

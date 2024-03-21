@@ -1,0 +1,18 @@
+<h1><%= @article.title %></h1>
+
+<p><%= @article.body %></p>
+
+<%= link_to "Edit", edit_article_path(@article) ,class:"btn btn-outline-primary",:remote=>true%></li>
+  <br>
+  <br>
+  <%= link_to "Destroy", article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  },class:"btn btn-outline-primary" %></li>
+
+
+<h2>Comments</h2>
+<%= render @article.comments.where(parent_id: nil) %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form', parent: nil %>

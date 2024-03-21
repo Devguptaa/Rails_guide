@@ -1,0 +1,39 @@
+<% unless comment.archived? %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <%= link_to "Destroy Comment", [comment.article, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } , class:"btn btn-outline-primary"%>
+  </p>
+   
+  <button type="button" class="comment-form-display">reply</button>
+  <div class="comment-form" style="display: none;">
+    <%= render 'comments/form', parent: comment %>
+  </div>
+
+  <div class="sub-comment">
+    <%= render comment.comments.order(id: :desc) %>
+  </div>
+<% end %>
+
+<script>
+document.querySelectorAll('.comment-form-display').forEach((el)=>{
+  el.addEventListener('click', (ev)=>{
+    ev.preventDefault()
+    console.log("hi from the comment form diaplay")
+    el.nextElementSibling.style.display = 'block';
+    el.nextElementSibling.style.paddingLeft = '40px';
+    return
+  })
+}) 
+  </script>
