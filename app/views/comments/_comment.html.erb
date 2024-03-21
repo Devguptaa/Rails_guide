@@ -16,7 +16,7 @@
                 } , class:"btn btn-outline-primary"%>
   </p>
    
-  <button type="button" class="comment-form-display">reply</button>
+  <button type="button" class="comment-form-display btn btn-primary">reply</button>
   <div class="comment-form" style="display: none;">
     <%= render 'comments/form', parent: comment %>
   </div>
@@ -30,7 +30,7 @@
 document.querySelectorAll('.comment-form-display').forEach((el)=>{
   el.addEventListener('click', (ev)=>{
     ev.preventDefault()
-    console.log("hi from the comment form diaplay")
+    console.log("hi from the comment form display")
     el.nextElementSibling.style.display = 'block';
     el.nextElementSibling.style.paddingLeft = '40px';
     return

@@ -16,6 +16,12 @@ gem "puma", ">= 5.0"
 gem 'sendgrid';
 gem 'devise'
 
+gem 'spreadsheet'
+gem 'prawn'
+gem 'prawn-table', '~> 0.1.0'
+
+
+
 gem 'pg', '~> 1.5', '>= 1.5.4'
 gem 'dotenv', groups: [:development, :test]
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]

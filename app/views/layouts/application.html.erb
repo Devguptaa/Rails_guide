@@ -32,20 +32,6 @@
   <div class="container">
     <%= yield %>
   </div>
-
-  <footer class="footer mt-auto py-3 bg-info text-dark">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <p>&copy; 2024 Your Company</p>
-        </div>
-        <div class="col-md-6 text-md-end">
-          <a href="https://www.instagram.com/yourinstagram" class="text-white me-3">
-            <i class="bi bi-instagram"></i> Instagram
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <%= render 'layouts/footer'%>
 </body>
 </html>

@@ -13,6 +13,17 @@
 
 <h2>Comments</h2>
 <%= render @article.comments.where(parent_id: nil) %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form', parent: nil %>
+<button type="button" class="comment-form-displ btn btn-primary">Add Comment</button>
+<div class="comment-add" style="display:none;">
+  <%= render 'comments/form', parent: nil %>
+</div> 
+<script>
+  document.querySelectorAll('.comment-form-displ').forEach((el)=>{
+  el.addEventListener('click', (ev)=>{
+    ev.preventDefault()
+    console.log("hi from the comment form display")
+    el.nextElementSibling.style.display = 'block';
+    return
+  })
+})
+</script>

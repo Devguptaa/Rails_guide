@@ -35,15 +35,14 @@
     <%= f.file_field :image_data %>
   </div>
   <div class="field">
-  <%= f.label :gender %><br />
-  <%= f.collection_radio_buttons :gender, [['Male', 'male'], ['Female', 'female'], ['Transgender', 'transgender']], :second, :first do |b| %>
-    <div class="radio-button">
-      <%= b.radio_button %>
-      <%= b.label %>
-    </div>
-  <% end %>
-</div>
-
+    <%= f.label :gender %><br />
+    <%= f.collection_radio_buttons :gender, [['Male', 'male'], ['Female', 'female'], ['Transgender', 'transgender']], :second, :first do |b| %>
+      <div class="radio-button">
+        <%= b.radio_button %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div>
 <br>
 
 
